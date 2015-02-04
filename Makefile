@@ -55,6 +55,9 @@ symbols.exe: symbols.cs
 nunit-console.exe: nunit-console.cs
 	mcs -r:nunit.framework -r:nunit.core -r:nunit.util -r:Mono.GetOptions nunit-console.cs
 
+Mono.Cecil.dll:
+        cp `pkg-config --variable=Libraries cecil` .
+        
 libmono-profiler-monocov.so: coverage.c
 	$(CC) $(CFLAGS) -DVERSION=\"$(VERSION)\" `pkg-config --cflags mono-2` `pkg-config --libs mono-2` `pkg-config --cflags glib-2.0` `pkg-config --libs glib-2.0` --shared -fPIC -o $@ $^
 
